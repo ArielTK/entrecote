@@ -32,7 +32,8 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 			}).success(function(response) {
 				// If successful show success message and clear form
 				$scope.success = true;
-				$scope.user = Authentication.user = response;
+
+                $scope.user = Authentication.user = response;
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
@@ -40,14 +41,15 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 
 		// Update a user profile
 		$scope.updateUserProfile = function() {
-			$scope.success = $scope.error = null;
 			var user = new Users($scope.user);
-
+            $scope.isLoading = true;
 			user.$update(function(response) {
-				$scope.success = true;
+                $scope.isLoading = false;
+                alertify.success("Profile Saved Successfully");
 				Authentication.user = response;
+                $scope.user = Authentication.user;
 			}, function(response) {
-				$scope.error = response.data.message;
+                alertify.error(response.data.message);
 			});
 		};
 

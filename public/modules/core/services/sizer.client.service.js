@@ -5,7 +5,7 @@ angular.module('core').service('Sizer', ['$window',
         var window = angular.element($window);
 
         this.updateElementSizeToStrech = function(element){
-            element.css('height', (window.height() - 250) + 'px');
+            element.css('height', (window.height() - 260) + 'px');
         };
 
         this.getWindowElement = function() {

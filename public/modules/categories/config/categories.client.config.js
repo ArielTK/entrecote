@@ -4,8 +4,9 @@
 angular.module('categories').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
-		Menus.addMenuItem('topbar', 'Categories', 'categories', 'dropdown', '/categories(/create)?');
-		Menus.addSubMenuItem('topbar', 'categories', 'List Categories', 'categories');
+		Menus.addMenuItem('topbar', 'Categories', 'categories', 'dropdown', '/categories', 'fa-align-justify');
+
+		// Menus.addSubMenuItem('topbar', 'categories', 'List Categories', 'categories');
 		Menus.addSubMenuItem('topbar', 'categories', 'New Category', 'categories/create');
 	}
 ]);

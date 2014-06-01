@@ -18,11 +18,12 @@ module.exports = {
                 'public/blue-moonV1.0.3/css/bootstrap.css',
                 'public/blue-moonV1.0.3/css/new.css',
                 'public/lib/ng-grid/ng-grid.css',
-                'public/lib/angular-notify/dist/angular-notify.css',
-                'public/blue-moonV1.0.3/fonts/font-awesome.css'
+                // 'public/lib/angular-notify/dist/angular-notify.css',
+                'public/blue-moonV1.0.3/fonts/font-awesome.css',
+                'public/blue-moonV1.0.3/css/alertify.core.css'
 			],
 			js: [
-				'public/lib/jquery/dist/jquery.min.js',
+				'public/lib/jquery/dist/jquery.js',
                 'public/lib/angular/angular.js',
 				'public/lib/angular-resource/angular-resource.js', 
 				'public/lib/angular-cookies/angular-cookies.js', 
@@ -34,7 +35,8 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
                 // 'public/blue-moonV1.0.3/js/bootstrap.min.js',
                 'public/lib/ng-grid/ng-grid-2.0.11.debug.js',
-                'public/lib/angular-notify/dist/angular-notify.js'
+                'public/lib/angular-notify/dist/angular-notify.js',
+                'public/blue-moonV1.0.3/js/alertify.min.js'
 			]
 		},
 		css: [

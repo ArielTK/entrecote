@@ -8,7 +8,7 @@
         <button ng-click="openNewCategoryWindow()" class="btn btn-primary btn-sm">New Category</button>
         <button class="btn btn-primary btn-sm">Export to CSV</button>
     </div>
-    <div class="gridStyle" grid-size ng-grid="gridOptions"></div>
+    <div class="gridStyle" ng-grid="gridOptions"></div>
 
     <div class="alert alert-warning text-center" data-ng-hide="!categories.$resolved || categories.length">
     	No Categories yet, why don't you <a href="/#!/categories/create">create one</a>?

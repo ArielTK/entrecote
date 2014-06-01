@@ -5,6 +5,8 @@ angular.module('categories').controller('CategoriesController', ['$scope', '$sta
 	function($scope, $stateParams, $location, Authentication, Categories, $modal, Alerts) {
         $scope.authentication = Authentication;
 
+        $scope.authentication.validateSignin();
+
         $scope.gridOptions = {
             data: 'categories',
             columnDefs: [
