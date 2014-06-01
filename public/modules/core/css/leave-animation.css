@@ -1,0 +1,19 @@
+@keyframes leave_animation {
+    from { opacity:1; }
+    to { opacity:0; }
+}
+
+@-webkit-keyframes leave_animation {
+    from { opacity:1; }
+    to { opacity:0; }
+}
+
+@-moz-keyframes leave_animation {
+    from { opacity:1; }
+    to { opacity:0; }
+}
+
+@-o-keyframes leave_animation {
+    from { opacity:1; }
+    to { opacity:0; }
+}
