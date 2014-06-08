@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication',
-	function($scope, $http, $location, Users, Authentication) {
+angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'Alerts',
+	function($scope, $http, $location, Users, Authentication, Alerts) {
 		$scope.user = Authentication.user;
 
 		// If user is not signed in then redirect back home
@@ -45,11 +45,11 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
             $scope.isLoading = true;
 			user.$update(function(response) {
                 $scope.isLoading = false;
-                alertify.success("Profile Saved Successfully");
+                Alerts.success('Profile Saved Successfully');
 				Authentication.user = response;
                 $scope.user = Authentication.user;
 			}, function(response) {
-                alertify.error(response.data.message);
+                Alerts.error(response.data.message);
 			});
 		};
 

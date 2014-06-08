@@ -7,10 +7,16 @@ angular.module('categories').controller('CategoriesController', ['$scope', '$sta
 
         $scope.authentication.validateSignin();
 
+        $scope.selectedCategory = [];
+
         $scope.gridOptions = {
             data: 'categories',
+            multiSelect: false,
+            showFooter: true,
+            selectedItems: $scope.selectedCategory,
             columnDefs: [
                 { field: 'name', displayName: 'Name' },
+                { field: 'description', displayName: 'Description' },
                 { field: 'created', displayName: 'Created Date', cellFilter: 'date' },
                 { field: 'user.displayName', displayName: 'User' },
             ]
@@ -20,12 +26,9 @@ angular.module('categories').controller('CategoriesController', ['$scope', '$sta
             $scope.find();
         };
 
-
         $scope.openNewCategoryWindow = function() {
-
-
             var createModal = $modal.open({
-                templateUrl: 'modules/categories/views/create-category.client.view.html',
+                templateUrl: 'modules/categories/views/category.client.view.html',
                 controller: 'CreateCategoryController'
             });
 
@@ -36,47 +39,62 @@ angular.module('categories').controller('CategoriesController', ['$scope', '$sta
             });
         };
 
+        $scope.openEditCategoryWindow = function(category) {
+            if ($scope.selectedCategory.length > 0) {
+                var createModal = $modal.open({
+                    templateUrl: 'modules/categories/views/category.client.view.html',
+                    controller: 'EditCategoryController',
+                    resolve: {
+                        category: function () {
+                            return category;
+                        }
+                    }
+                });
 
+                createModal.result.then(function () {
+                    $scope.find();
+                }, function () {
+                    console.log('Modal dismissed at: ' + new Date());
+                });
+            }
+            else{
+                Alerts.error('Please select Category to update');
+            }
+        };
 
 
 
 
 		// Remove existing Category
 		$scope.remove = function( category ) {
-			if ( category ) { category.$remove();
+			if ( category ) {
 
-				for (var i in $scope.categories ) {
-					if ($scope.categories [i] === category ) {
-						$scope.categories.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.category.$remove(function() {
-					$location.path('categories');
-				});
+                var message = 'Are you sure you want to delete category: ' + category.name;
+                Alerts.confirm(message, function (e) {
+                    if (e) {
+                        category.$remove();
+                        $scope.find();
+                        Alerts.success('Category deleted successfully');
+                    }
+                });
 			}
-		};
-
-		// Update existing Category
-		$scope.update = function() {
-			var category = $scope.category ;
-
-			category.$update(function() {
-				$location.path('categories/' + category._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
+            else {
+                Alerts.error('Please select Category to delete');
+			}
 		};
 
 		// Find a list of Categories
 		$scope.find = function() {
-            if (typeof $scope.gridSearchData !== 'undefined' && $scope.gridSearchData != '') {
-                    $scope.categories = Categories.search({
+            if (typeof $scope.gridSearchData !== 'undefined' && $scope.gridSearchData !== '') {
+
+                $scope.categories = Categories.search({
                     searchData: $scope.gridSearchData
                 });
+                // $scope.selectedCategory = [];
             }
             else {
                 $scope.categories = Categories.query();
+                // $scope.selectedCategory = [];
             }
 
 		};

@@ -90,34 +90,7 @@
 			expect(scope.category).toEqualData(sampleCategory);
 		}));
 
-		it('$scope.create() with valid form data should send a POST request with the form input values and then locate to new object URL', inject(function(Categories) {
-			// Create a sample Category object
-			var sampleCategoryPostData = new Categories({
-				name: 'New Category'
-			});
 
-			// Create a sample Category response
-			var sampleCategoryResponse = new Categories({
-				_id: '525cf20451979dea2c000001',
-				name: 'New Category'
-			});
-
-			// Fixture mock form input values
-			scope.name = 'New Category';
-
-			// Set POST response
-			$httpBackend.expectPOST('categories', sampleCategoryPostData).respond(sampleCategoryResponse);
-
-			// Run controller functionality
-			scope.create();
-			$httpBackend.flush();
-
-			// Test form inputs are reset
-			expect(scope.name).toEqual('');
-
-			// Test URL redirection after the Category was created
-			expect($location.path()).toBe('/categories/' + sampleCategoryResponse._id);
-		}));
 
 		it('$scope.update() should update a valid Category', inject(function(Categories) {
 			// Define a sample Category put data

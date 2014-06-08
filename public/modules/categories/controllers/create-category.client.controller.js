@@ -3,29 +3,33 @@
 angular.module('categories').controller('CreateCategoryController', ['$scope', '$modalInstance', 'Categories', 'Alerts',
 	function($scope, $modalInstance, Categories, Alerts) {
 
+        $scope.modalTitle = 'Create New Category';
         $scope.closeModal = function() {
             $modalInstance.dismiss('cancel');
         };
 
         // Create new Category
-        $scope.create = function() {
+        $scope.save = function(categoryParam) {
+
+            $scope.isLoading = true;
             // Create new Category object
             var category = new Categories ({
-                name: this.name
+                name: categoryParam.name,
+                description: categoryParam.description
             });
-
-
 
             // Redirect after save
             category.$save(function(response) {
                 $modalInstance.close(response);
-                Alerts.notify('Save successfully');
+                Alerts.success('Category Added Successfully');
+                $scope.isLoading = false;
             }, function(errorResponse) {
-                $scope.error = errorResponse.data.message;
+                Alerts.error(errorResponse.data.message);
+                $scope.isLoading = false;
             });
 
-            // Clear form fields
-            this.name = '';
+
         };
+
 	}
 ]);

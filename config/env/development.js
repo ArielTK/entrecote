@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/entrecote-dev',
+	db: 'mongodb://entrecote-dev:a@localhost/entrecote-dev',
 	app: {
 		title: 'Entrecote - Development Environment'
 	},

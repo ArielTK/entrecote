@@ -13,11 +13,19 @@ angular.module('core').service('Menus', [
 		var shouldRender = function(user) {
 			if (user) {
 				for (var userRoleIndex in user.roles) {
-					for (var roleIndex in this.roles) {
-						if (this.roles[roleIndex] === user.roles[userRoleIndex]) {
-							return true;
-						}
-					}
+                    if (this.roles.isArray) {
+                        for (var roleIndex in this.roles) {
+                            if (this.roles[roleIndex] === user.roles[userRoleIndex]) {
+                                return true;
+                            }
+                        }
+                    }
+                    else if (typeof this.roles === 'string') {
+                        if (this.roles === user.roles[userRoleIndex]) {
+                            return true;
+                        }
+                    }
+
 				}
 			} else {
 				return this.isPublic;

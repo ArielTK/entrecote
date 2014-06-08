@@ -16,6 +16,11 @@ var CategorySchema = new Schema({
 		required: 'Please fill Category name',
 		trim: true
 	},
+    description: {
+        type: String,
+        default: '',
+        required: 'Please fill Category description'
+    },
 	created: {
 		type: Date,
 		default: Date.now

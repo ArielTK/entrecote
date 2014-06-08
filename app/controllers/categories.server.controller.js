@@ -118,7 +118,7 @@ exports.categoryByID = function(req, res, next, id) { Category.findById(id).popu
 };
 
 exports.search = function(req, res, next, searchData) {
-    var findBy = new RegExp('^.*'+searchData+'.*$', "i");
+    var findBy = new RegExp('^.*'+searchData+'.*$', 'i');
     Category.find({'name': findBy }).populate('user', 'displayName').exec(function(err, category) {
     if (err) return next(err);
     if (! category) return next(new Error('Failed to load Category ' + searchData));
@@ -131,8 +131,16 @@ exports.search = function(req, res, next, searchData) {
  * Category authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.category.user.id !== req.user.id) {
-		return res.send(403, 'User is not authorized');
-	}
+    var isAdmin = false;
+    for (var roleIndex in req.user.roles) {
+        if (req.user.roles[roleIndex] === 'admin') {
+            isAdmin = true;
+        }
+    }
+    if (!isAdmin) {
+        if (req.category.user.id !== req.user.id) {
+            return res.send(403, 'User is not authorized');
+        }
+    }
 	next();
 };

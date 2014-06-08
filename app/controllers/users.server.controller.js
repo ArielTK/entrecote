@@ -5,7 +5,6 @@
  */
 var mongoose = require('mongoose'),
 	passport = require('passport'),
-    sleep    = require('sleep'),
 	User = mongoose.model('User'),
 	_ = require('lodash');
 
@@ -97,7 +96,6 @@ exports.signin = function(req, res, next) {
  * Update user details
  */
 exports.update = function(req, res) {
-    sleep.sleep(5);
 	// Init Variables
 	var user = req.user;
 	var message = null;
@@ -248,6 +246,18 @@ exports.requiresLogin = function(req, res, next) {
 	}
 
 	next();
+};
+
+exports.isAdmin = function(req, res, next) {
+    for (var roleIndex in req.user.roles) {
+        if (req.user.roles[roleIndex] === 'admin') {
+            return next();
+        }
+    }
+
+    return res.send(401, {
+        message: 'User is not Admin'
+    });
 };
 
 /**
