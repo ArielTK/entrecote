@@ -1,0 +1,5 @@
+.loading-mask{
+    background-image: url('/modules/core/img/loaders/small-loader.gif');
+    background-repeat: no-repeat;
+    background-position: center center;
+}

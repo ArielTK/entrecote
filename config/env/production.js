@@ -1,14 +1,17 @@
 'use strict';
 
 module.exports = {
-	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/entrecote',
+    db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/entrecote',
     port: 80,
 	assets: {
 		lib: {
 			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.min.css',
+				// 'public/lib/bootstrap/dist/css/bootstrap.min.css',
+                'public/blue-moonV1.0.3/css/bootstrap.css',
+                'public/blue-moonV1.0.3/css/new.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-                'public/lib/ng-grid/ng-grid.min.css'
+                'public/lib/ng-grid/ng-grid.min.css',
+
 			],
 			js: [
                 'public/lib/jquery/dist/jquery.min.js',
