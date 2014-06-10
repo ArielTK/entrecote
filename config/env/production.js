@@ -2,6 +2,7 @@
 
 module.exports = {
 	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/entrecote',
+    port: 80,
 	assets: {
 		lib: {
 			css: [
