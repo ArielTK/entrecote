@@ -41,7 +41,6 @@ exports.signup = function(req, res) {
 
 	// Init Variables
 	var user = new User(req.body);
-	var message = null;
 
 	// Add missing user fields
 	user.provider = 'local';
@@ -98,7 +97,6 @@ exports.signin = function(req, res, next) {
 exports.update = function(req, res) {
 	// Init Variables
 	var user = req.user;
-	var message = null;
 
 	// For security measurement we remove the roles from the req.body object
 	delete req.body.roles;
@@ -137,7 +135,6 @@ exports.update = function(req, res) {
 exports.changePassword = function(req, res, next) {
 	// Init Variables
 	var passwordDetails = req.body;
-	var message = null;
 
 	if (req.user) {
 		User.findById(req.user.id, function(err, user) {
@@ -385,4 +382,31 @@ exports.removeOAuthProvider = function(req, res, next) {
 			}
 		});
 	}
+};
+
+exports.createAdminUser = function(){
+    var adminUserName = 'ariel';
+    User.findOne({
+        username: adminUserName
+    }).exec(function(err, user) {
+        if (err){
+            return err;
+        }
+
+        if (!user){
+            var adminUser = new User();
+
+            adminUser.username = adminUserName;
+            adminUser.password = 'arield10';
+            adminUser.firstName = adminUserName;
+            adminUser.lastName = adminUserName;
+            adminUser.email = adminUserName + '@' + adminUserName + '.com';
+            adminUser.displayName = adminUser.firstName + ' ' + adminUser.lastName;
+            adminUser.provider = 'local';
+            adminUser.roles = ['admin'];
+
+            adminUser.save();
+
+        }
+    });
 };
