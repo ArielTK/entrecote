@@ -1,0 +1,26 @@
+<section data-ng-controller="CategoriesController">
+    <form class="form-horizontal" data-ng-submit="save(category)">
+        <div class="modal-header">
+            <h3 class="modal-title">{{modalTitle}}</h3>
+        </div>
+        <div class="modal-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="control-label" for="name">Name</label>
+                            <div class="controls">
+                                <input type="text" focus-me data-ng-model="category.name" id="name" class="form-control" placeholder="Name" required>
+                            </div>
+                            <label class="control-label" for="description">Description</label>
+                            <div class="controls">
+                                <textarea data-ng-model="category.description" id="description" class="form-control" required />
+                            </div>
+                        </div>
+                    </fieldset>
+
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" class="btn btn-default" loading="isLoading">Save</button>
+            <button type="button" class="btn btn-danger" data-ng-click="closeModal()" loading="isLoading">Cancel</button>
+        </div>
+    </form>
+</section>
