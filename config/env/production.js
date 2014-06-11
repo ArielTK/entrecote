@@ -11,7 +11,7 @@ module.exports = {
                 'public/blue-moonV1.0.3/css/new.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
                 'public/lib/ng-grid/ng-grid.min.css',
-
+                'public/blue-moonV1.0.3/css/alertify.core.css'
 			],
 			js: [
                 'public/lib/jquery/dist/jquery.min.js',
