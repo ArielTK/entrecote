@@ -120,11 +120,11 @@ exports.categoryByID = function(req, res, next, id) { Category.findById(id).popu
 exports.search = function(req, res, next, searchData) {
     var findBy = new RegExp('^.*'+searchData+'.*$', 'i');
     Category.find({'name': findBy }).populate('user', 'displayName').exec(function(err, category) {
-    if (err) return next(err);
-    if (! category) return next(new Error('Failed to load Category ' + searchData));
-    req.category = category ;
-    next();
-});
+        if (err) return next(err);
+        if (! category) return next(new Error('Failed to load Category ' + searchData));
+        req.category = category ;
+        next();
+    });
 };
 
 /**

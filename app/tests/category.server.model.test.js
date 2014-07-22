@@ -1,4 +1,4 @@
-'use strict';
+    'use strict';
 
 /**
  * Module dependencies.
@@ -30,6 +30,7 @@ describe('Category Model Unit Tests:', function() {
 		user.save(function() { 
 			category = new Category({
 				name: 'Category Name',
+                description: 'Category description',
 				user: user
 			});
 

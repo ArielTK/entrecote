@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/entrecote-test',
+	db: 'mongodb://entrecote-test:a@localhost/entrecote-test',
 	port: 3001,
 	app: {
 		title: 'Entrecote - Test Environment'

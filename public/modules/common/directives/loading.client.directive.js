@@ -7,7 +7,7 @@ angular.module('core').directive('loading', ['$compile',
 			restrict: 'A',
 			link: function postLink(scope, element, attrs) {
                 var updateElement = function (newValue, oldValue) {
-                    if (newValue !== oldValue) {
+                    if (newValue !== undefined && newValue !== oldValue) {
 
                         if (newValue === true) {
                             element.addClass('loading-mask');
